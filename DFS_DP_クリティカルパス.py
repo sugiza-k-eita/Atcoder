@@ -1,3 +1,4 @@
+# https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2503
 n, m = map(int, input().split())
 
 G = [[] for _ in range(n)]
