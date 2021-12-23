@@ -6,27 +6,31 @@ def S(): return sys.stdin.readline().rstrip()
 
 V,E = MI()
 INF = float("inf")
-def WarshallFloyd(node,edge):
-    min_dist = [[INF]*node for i in range(node)]
-    for i in range(node):
-        min_dist[i][i] = 0
 
-    for i in range(edge):
-        _from,_to,cost = MI()
-        if min_dist[_from][_to] > cost:
-            min_dist[_from][_to] = cost
+tmp_dist = [[INF]*10 for i in range(10)]
 
+for i in range(10):
+    costs = LI()
+    for j in range(len(costs)):
+        tmp_dist[i][j] = costs[j]
+walls = [[]for i in range(V)]
+
+for h in range(V):
+    wall = LI()
+    walls[h] = wall
+
+
+def WarshallFloyd(node,tmp_dist):
     for mid in range(node):
         for start in range(node):
-            if min_dist[start][mid] == INF:
+            if tmp_dist[start][mid] == INF:
                 continue
             for goal in range(node):
-                if min_dist[mid][goal] == INF:
+                if tmp_dist[mid][goal] == INF:
                     continue
-                if min_dist[start][goal] > min_dist[start][mid]+min_dist[mid][goal]:
-                    min_dist[start][goal] = min_dist[start][mid]+min_dist[mid][goal]
-
-
+                if tmp_dist[start][goal] > tmp_dist[start][mid]+tmp_dist[mid][goal]:
+                    tmp_dist[start][goal] = tmp_dist[start][mid]+tmp_dist[mid][goal]
+    min_dist = tmp_dist
 
     neg_FLG = False
     #負閉路探し
@@ -37,7 +41,7 @@ def WarshallFloyd(node,edge):
 
     return min_dist,neg_FLG
 
-min_dist, negflg= WarshallFloyd(V,E)
+min_dist, negflg = WarshallFloyd(10,tmp_dist)
 
 if negflg:
     print("NEGATIVE CYCLE")
