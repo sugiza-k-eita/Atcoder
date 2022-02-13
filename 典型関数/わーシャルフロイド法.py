@@ -1,3 +1,8 @@
+""""
+ワーシャルフロイド法では計算量はO(V^3)である。
+ダイクストラ法の計算量は、二分ヒープを用いた場合にはO((E+V)logV)
+"""
+
 import sys
 def LI(): return list(map(int,sys.stdin.readline().rstrip().split()))
 def II(): return int(sys.stdin.readline())
