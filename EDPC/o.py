@@ -24,7 +24,7 @@ A = [list(map(int, input().split())) for _ in range(N)]
 #dp[i][S]:= i番目の男性まで決めて、集合Sの女性の選び方を決めた時の場合の数
 dp = [[0] * (2**N) for _ in range(N+1)]
 dp[0][0] = 1
-for i in range(N):
+for i in range(1,N+1):
     for s in range(1<<N):
         #1をNビットだけ左シフト
         #2**N倍される
@@ -38,7 +38,7 @@ for i in range(N):
             if A[i][j] == 0:
                 #相性が悪い場合は
                 continue
-            dp[i+1][s|(1<<j)] += dp[i][s]
-            dp[i+1][s|(1<<j)] %= MOD
+            dp[i][s|(1<<j)] += dp[i-1][s]
+            dp[i][s|(1<<j)] %= MOD
             
 print(dp[N][-1])
