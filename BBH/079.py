@@ -1,8 +1,3 @@
-#https://atcoder.jp/contests/abc124/tasks/abc124_d
-"""
-方針ランレングスする
-累積わするor 尺取法で解く
-"""
 import sys
 def LI(): return list(map(int,sys.stdin.readline().rstrip().split()))
 def II(): return int(sys.stdin.readline())
@@ -10,48 +5,58 @@ def MI(): return map(int,sys.stdin.readline().rstrip().split())
 def S(): return sys.stdin.readline().rstrip()
 readline = sys.stdin.readline
 sys.setrecursionlimit(10 ** 6)
-from collections import deque
 
 N,K = MI()
 s = S()
+cnt = 0
 
-#ランレングス変換する
-def rle(s):
-    tmp, count, ans = s[0], 1, []
-    for i in range(1,len(s)):
-        if tmp == s[i]:
-            count += 1
-        else:
-            ans.append([int(tmp),count])
-            tmp = s[i]
-            count = 1
-    ans.append([int(tmp),count])
-    return ans
+if N == 1:
+    print(1)
+    exit()
+    
 
-a = rle(s)
-ruiseki = [0]
-tmp = 0
+box = []
+for i in range(N-1):
+    if s[i] == s[i+1]:
+        cnt += 1
+    else:
+        cnt +=1
+        box.append(cnt)
+        cnt = 0
+
+if s[-2] == s[-1]:
+    cnt += 1
+    box.append(cnt)
+else:
+    cnt = 1
+    box.append(cnt)
+
+
+ruiseki = [0,0]
+for i in box:
+    ruiseki.append(ruiseki[-1]+i)
+
+ruiseki.append(ruiseki[-1])
+
+if len(ruiseki)-3 <= 2*K:
+    print(N)
+    exit()
+
 ans = 0
-for i in range(len(a)):
-    num,c = a[i][0],a[i][1]
-    if i == 0:
-        if num == 0:
-            ruiseki.append(0)
-    tmp += c
-    ruiseki.append(tmp)
-    ans = max(ans,c)
-    
-    if i == len(a)-1:
-        if num == 0:
-            ruiseki.append(tmp)
+if s[0] == "0":
+    start = 0
+else:
+    start = 1
 
 
-for left in range(0,len(ruiseki),2):
-    right = left + 2*K + 1
-    if right >= len(ruiseki):
+
+width = 2*K+1
+for l in range(start,len(ruiseki)-1,2):
+    r = l + width
+    if r >= len(ruiseki):
         break
-    
-    tmp_ans = ruiseki[right] -ruiseki[left]
+    # print(l,r)
+    tmp_ans = ruiseki[r]-ruiseki[l]
     ans = max(ans,tmp_ans)
-print(ans)
     
+print(ans)
