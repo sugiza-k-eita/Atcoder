@@ -18,7 +18,7 @@ for i in range(N-1):
         if A[i] > A[j]:
             p += 1
 
-
+q = 0
 for i in range(N):
     for j in range(N):
         if A[i] > A[j]:
