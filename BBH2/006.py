@@ -33,10 +33,3 @@ for i in range(len(reversed_s)-len(reversed_t)+1):
             cnt = 0
             break
 print("UNRESTORABLE")
-
-"""
-https://atcoder.jp/contests/abc076/tasks/abc076_c
-C - Dubious Document 2 
-
-
-"""
