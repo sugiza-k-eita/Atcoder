@@ -1,4 +1,3 @@
-from collections import deque
 import sys
 def LI(): return list(map(int,sys.stdin.readline().rstrip().split()))
 def II(): return int(sys.stdin.readline())
@@ -8,46 +7,51 @@ readline = sys.stdin.readline
 sys.setrecursionlimit(10 ** 6)
 
 
-N, X,Y = MI()
-
-node = [[] for i in range(N)]
-
-for i in range(1,N-1):
-    node[i].append(i-1)
-    node[i].append(i+1)
-
-node[0].append(1)
-node[N-1].append(N-2)
-node[X-1].append(Y-1)
-node[Y-1].append(X-1)
-
-# for x in node:
-#     print(x)
+N = II()
+A = LI()
 
 
-def bfs(Node,start,N):
-    seen = [False]*N
-    seen[start] = True
-    dist = [0]*N
-    que = deque()
-    que.append(start)
-
-    while que:
-        now = que.popleft()
-        for next in Node[now]:
-            if seen[next] == True:
-                continue
-            elif seen[next] == False:
-                seen[next] = True
-                dist[next] += dist[now]+1
-                que.append(next)
-    return dist
-
-cnt = [0]*(N)
+x = 0
+y = 0
+z = 0
+#赤、青、緑の帽子の数を管理。　どの帽子かは、関係ないのであえて命名はx,y,z
+ans = 1
 for i in range(N):
-    a = bfs(node,i,N)
-    for j in a:
-        cnt[j] += 1
+    if x == A[i] and y == A[i] and z == A[i]:
+        #すべて同じ数字なら、i番目は3つの分岐を作る
+        ans *= 3
+        x += 1
+    
+    elif x == A[i] and y == A[i]:
+        #2つが同じ数字なら、i番目は2つの分岐を作る
+        ans *= 2
+        x += 1
+    
+    
+    elif x == A[i] and z == A[i]:
+        #2つが同じ数字なら、i番目は2つの分岐を作る
+        ans *= 2
+        x += 1
+    
+    elif y == A[i] and z == A[i]:
+        #2つが同じ数字なら、i番目は2つの分岐を作る
+        ans *= 2
+        y += 1
+    
+    elif x == A[i]:
+        #条件をみたすのが1つしかないのなら分岐はしない
+        x += 1
+    elif y == A[i]:
+        #条件をみたすのが1つしかないのなら分岐はしない
+        y += 1
+    elif z == A[i]:
+        #条件をみたすのが1つしかないのなら分岐はしない
+        z += 1
+    
+    else:
+        #条件をみたすのがないのなら
+        print(0)
+        exit()
+    ans %= 10**9 + 7
 
-for i in range(1,N):
-    print(cnt[i]//2)
+print(ans)
