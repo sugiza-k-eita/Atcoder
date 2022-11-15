@@ -13,14 +13,14 @@ B_cnt = 0
 ans = 0
 for i in range(N):
     letter = S()
-    if letter[0] == "B" and letter[-1] == "A":
+    if letter[0] == "B" and letter[-1] == "A":#先頭がBかつ末尾がBの個数をカウント
         AB_cnt += 1
-    if letter[-1] == "A":
+    if letter[-1] == "A":#先頭がB以外で、末尾がAをカウント
         A_cnt += 1
-    if letter[0] == "B":
+    if letter[0] == "B":#先頭がBで、末尾がA以外のをカウント
         B_cnt += 1
     
-    for j in range(len(letter)-1):
+    for j in range(len(letter)-1):#CABDのように文字列の中にABが含まれるのをカウント
         if letter[j] == "A" and letter[j+1] == "B":
             ans += 1
 
