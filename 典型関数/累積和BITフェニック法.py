@@ -28,3 +28,28 @@ class Fenwick_Tree:
             s += self.data[r - 1]
             r -= r & -r
         return s
+
+
+#https://qiita.com/u2dayo/items/5e2034dbc65ea56ab6a7#d%E5%95%8F%E9%A1%8Credoctaswapii1
+class FenwickTree:
+    def __init__(self, n):
+        self.__array = [0] * n
+        self.__size = n + 1
+        self.__container = [0] * (n + 1)
+        self.__depth = n.bit_length()
+
+    def add(self, i, x):
+        """a[i]にxを加算"""
+        self.__array[i] += x
+        i += 1
+        while i < self.__size:
+            self.__container[i] += x
+            i += i & (-i)
+
+    def sum(self, r):
+        """[0, r) の総和"""
+        s = 0
+        while r > 0:
+            s += self.__container[r]
+            r -= r & (-r)
+        return s
