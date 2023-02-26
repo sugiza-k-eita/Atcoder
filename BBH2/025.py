@@ -7,7 +7,7 @@ readline = sys.stdin.readline
 sys.setrecursionlimit(10 ** 6)
 
 N = II()
-box = [[]]#1-indexにするためにからのリストを追加しておく
+box = [[]]#1-indexにするために空のリストを追加しておく
 for i in range(N-1):
     C,S,F = MI()#C秒でi+1駅に行く、S秒目で最速出発し、それ以降はF秒ごとに出発
     box.append([C,S,F])
