@@ -62,12 +62,3 @@ ex)
 
 そのため、縦軸に商品の数、横軸に支払いのパターンを取り、動的計画法をすることで答えにたどり着けます。
 """
-
-letter = input()
-box = []
-for i in range(len(letter)):
-    box.append(letter[i])
-print(box)
-
-for i in range(len(box)):
-    if 
