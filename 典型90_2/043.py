@@ -52,11 +52,10 @@ print(min(dist[rt][ct]))
 # # for h in range(H):
 # #     print(ans[h])
 """
-bfsだからコストが低いやつから探索する必要がある
-なので、0costで行けるところを先に探索して、その後1costで行けるところを探索する
-Qbfsを二個各必要がある？
-que.popleftしたやつをd持ちでrpushすればok?
-01bfs
+最小の方向変換
+
+cost0のところを優先的に探索したい
+deque で
 
 """
 
