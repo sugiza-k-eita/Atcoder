@@ -11,7 +11,7 @@ N, M = MI()
 A = LI()
 
 box = [input() for _ in range(N)]
-
+list(map(int, input().split()))
 
 scores = [sum(A[j] for j in range(M) if box[i][j] == 'o') + i for i in range(N)]
 
