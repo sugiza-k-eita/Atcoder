@@ -6,7 +6,7 @@ N, Q = map(int, input().split())
 A = list(map(int, input().split()))
 
 if N == 1:
-    for _ in range(Q):  # Q回のクエリに対応するための出力が必要です。
+    for _ in range(Q):  # Q回のクエリに対応するための出力が必要
         print(0)
     exit()
 
@@ -21,11 +21,11 @@ for q in range(Q):
     R -= 1
     
     if L != 0:
-        result -= abs(inconvenience[L - 1])
-        inconvenience[L - 1] += V
-        result += abs(inconvenience[L - 1])
+        result -= abs(inconvenience[L - 1])#地殻変動が起きたら、L-1~Lの不便さを引き、
+        inconvenience[L - 1] += V#新しい不便さに更新し
+        result += abs(inconvenience[L - 1])#それを合計の不便さに足す
     
-    if R < N - 1:  # ここが間違っていました。
+    if R < N - 1:  
         result -= abs(inconvenience[R])
         inconvenience[R] -= V
         result += abs(inconvenience[R])
